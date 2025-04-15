@@ -1,13 +1,13 @@
 package Cartes;
 
-public class Serviteur {
+abstract public class Serviteur {
 	private int HP;
 	private int dégats;
 	private int mana;
 	// private ActionSpeciale actionspéciale; #A faire dans les étapes suivantes
 	private String nom;
 	
-	private Serviteur(String nom,int HP, int dégats, int mana) {
+	public Serviteur(String nom,int HP, int dégats, int mana) {
 		this.nom=nom;
 		this.HP=HP;
 		this.dégats=dégats;
