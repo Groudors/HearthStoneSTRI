@@ -5,6 +5,16 @@ import java.util.List;
 import Cartes.*;
 
 public class Deck {
-	private List<Serviteur> Serviteur = new ArrayList<>(60);
+	/*Maximum de 30 cartes par deck */
+	private List<Serviteur> Deck = new ArrayList<>(30);
 	private int Id;
+	
+	public void creerDeck() {
+		
+		
+	}
+	
+	public void name() {
+		
+	}
 }
