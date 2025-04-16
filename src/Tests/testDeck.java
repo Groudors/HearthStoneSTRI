@@ -5,14 +5,7 @@ import Cartes.*;
 public class testDeck {
 	public static void main(String[] args) {
 		listeCartes Test= new listeCartes();
-		Test.creerListeCartes();
-		System.out.println(Test.getServiteurs());
+		Test.creeInstanceServiteur();
 		System.out.println(Test.montrerServiteurs());
-		
-		
-		
-		
-		
 	}
-
 }

@@ -1,6 +1,6 @@
 package Cartes;
 
-abstract public class Serviteur {
+public class Serviteur {
 	private int HP;
 	private int dégats;
 	private int mana;
@@ -45,6 +45,11 @@ abstract public class Serviteur {
 		else {
 			System.out.println("Le serviteur ne prends pas bagdad, et ne s'effondre pas");
 		}
+	}
+	
+	public static void main(String[] args) {
+		
+		
 	}
 
 	
