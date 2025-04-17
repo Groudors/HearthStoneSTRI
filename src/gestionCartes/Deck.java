@@ -8,35 +8,49 @@ import Cartes.*;
 
 public class Deck {
 	/*Maximum de 30 cartes par deck */
-	private List<Serviteur> Deck = new ArrayList<>(30);
+	private List<Serviteur> DeckCartes = new ArrayList<>(30);
 	private int Id;
+	
+	public void ajouterCarteDeck(Serviteur ServiteurDeck) {
+		this.DeckCartes.add(ServiteurDeck);
+        }
+	
+	public String afficherDeck() {
+		String message="";
+		message +="| Votre deck est le suivante :\n";
+		int i = 1;
+		for (Serviteur creature : DeckCartes) {
+			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDégats() + " HP : "+ creature.getHP() + " Mana : " + creature.getMana() + ". \n";
+			i++;
+		}
+		return message;
+	}
+	
 	
 	public void creerDeck(listeCartes liste) {
 		String message="";
-		int i=2;
+		int i=1;
 		int numType;
-		message+=("|----     Bienvenue dans la Création de Deck     ----|");
-		message+=("|  Vous pouvez choisir parmis les cartes suivantes   |");
+		message+=("|----                  Bienvenue dans la Création de Deck                          ---- \n");
+		message+=("|                 Vous pouvez choisir parmis les cartes suivantes                   \n");
 		message+=liste.montrerServiteurs();
-		message+=("|         Veuillez choisir la première carte         |" );
 		System.out.println(message);
-		while (Deck.size()<30) {
-			message+=("|         Veuillez choisir la carte " +i+"       |" );
+		
+		while (DeckCartes.size()<30) {
+			System.out.println("|              Veuillez choisir la carte " + i +"  0 pour sortir de la création de Deck          \n");
 			numType = Clavier.entrerClavierInt();
-			while(!(numType < liste.size() + 1))
-				
-				return compagnons.get(numero - 1);
-			} else {
-				return null;
+			while((numType > liste.getListeServiteurs().size()) || numType<0) {
+				System.out.println("|             Numéro de carte invalide           |\n");
+				numType = Clavier.entrerClavierInt();
 			}
+			if (numType == 0){
+				break;
+			}
+			ajouterCarteDeck(liste.getServiteurs(numType-1));
+			System.out.println(afficherDeck());
+			
+		
+			}
+		
 		}
-		
-		
-	}
-	
-	
-	
-	public void name() {
-		
-	}
 }

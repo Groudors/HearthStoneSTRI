@@ -1,4 +1,4 @@
-
+package Utilitaire;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,6 +17,7 @@ public class Clavier {
     		scanner.nextLine();
     		return entrerClavierInt();
     	}
+    	scanner.nextLine();
     	return nextInt;
     }
 

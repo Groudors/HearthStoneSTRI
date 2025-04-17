@@ -58,8 +58,11 @@ public class listeCartes {
 		this.serviteurs.add(nouveauServiteur);
         }
 
-	public List<Serviteur> getServiteurs() {
+	public List<Serviteur> getListeServiteurs() {
 		return serviteurs;
+	}
+	public Serviteur getServiteurs(int x) {
+		return serviteurs.get(x);
 	}
 	
 	public String montrerServiteurs() {
