@@ -49,8 +49,8 @@ public class Deck {
 			ajouterCarteDeck(liste.getServiteurs(numType-1));
 			System.out.println(afficherDeck());
 			
-		
 			}
+		System.out.println("Votre deck est complet, vous pouvez maintenant commencer le combat ! ");
 		
 		}
 }
