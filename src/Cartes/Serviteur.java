@@ -4,7 +4,7 @@ public class Serviteur {
 	private int HP;
 	private int dégats;
 	private int mana;
-	// private ActionSpeciale actionspéciale; #A faire dans les étapes suivantes
+	// private ActionSpeciale action spéciale; #A faire dans les étapes suivantes
 	private String nom;
 	
 	public Serviteur(String nom,int HP, int dégats, int mana) {
@@ -28,7 +28,7 @@ public class Serviteur {
 	
 	public Boolean subirDegats(int dégats) {
 		HP=HP-dégats;
-		return HP==0;
+		return HP<=0;
 		
 	}
 	
@@ -38,12 +38,12 @@ public class Serviteur {
 	}
 	
 	public void Attaquer(Serviteur ennemie) {
-		if(ennemie.subirDegats(dégats)==true) {
-			System.out.println("Le serviteur prends bagdad, et s'effrondre");
+		if(ennemie.subirDegats(dégats)) {
+			System.out.println("Le " + ennemie.getNom()+" ne peut supporter cette assaut, et s'effrondre");
 			ennemie.mourir();
 		}
 		else {
-			System.out.println("Le serviteur ne prends pas bagdad, et ne s'effondre pas");
+			System.out.println("Le " + ennemie.getNom()+", mais parvient à rester debout");
 		}
 	}
 	

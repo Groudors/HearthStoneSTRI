@@ -15,6 +15,10 @@ public class Deck {
 		this.DeckCartes.add(ServiteurDeck);
         }
 	
+	public List<Serviteur> getDeckCartes() {
+		return DeckCartes;
+	}
+	
 	public String afficherDeck() {
 		String message="";
 		message +="| Votre deck est le suivante :\n";

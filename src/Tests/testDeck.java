@@ -1,5 +1,6 @@
 package Tests;
 import gestionCartes.*;
+import utilisationCarte.CombatServiteurs;
 import Cartes.*;
 
 public class testDeck {
@@ -8,6 +9,9 @@ public class testDeck {
 		Deck deck= new Deck();
 		Test.creeInstanceServiteur();
 		deck.creerDeck(Test);
+		CombatServiteurs combat= new CombatServiteurs();
+		combat.ChoixServiteurs(deck);
+		
 		
 	}
 }
