@@ -60,7 +60,12 @@ public class Deck {
 		return message;
 	}
 	
-	
+	/**
+     * Permet à l'utilisateur de créer un deck de 30 cartes à partir d'une liste de cartes disponibles.
+     * L'utilisateur sélectionne les cartes via le clavier. Il peut s'arrêter à tout moment avec l'entrée 0.
+     * 
+     * @param liste La source de cartes disponibles pour composer le deck
+     */
 	public void creerDeck(listeCartes liste) {
 		String message="";
 		int i=1;
