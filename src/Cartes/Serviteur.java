@@ -2,7 +2,7 @@ package Cartes;
 
 public class Serviteur {
 	private int HP;
-	private int dégats;
+	private int degats;
 	private int mana;
 	// private ActionSpeciale action spéciale; #A faire dans les étapes suivantes
 	private String nom;
@@ -10,7 +10,7 @@ public class Serviteur {
 	public Serviteur(String nom,int HP, int dégats, int mana) {
 		this.nom=nom;
 		this.HP=HP;
-		this.dégats=dégats;
+		this.degats=dégats;
 		this.mana=mana;
 	}
 	public String getNom() {
@@ -23,11 +23,11 @@ public class Serviteur {
 		return HP;
 	}
 	public int getDégats() {
-		return dégats;
+		return degats;
 	}
 	
-	public Boolean subirDegats(int dégats) {
-		HP=HP-dégats;
+	public Boolean subirDegats(int coupsubi) {
+		HP=HP-coupsubi;
 		return HP<=0;
 		
 	}
@@ -38,12 +38,12 @@ public class Serviteur {
 	}
 	
 	public void Attaquer(Serviteur ennemie) {
-		if(ennemie.subirDegats(dégats)) {
-			System.out.println("Le " + ennemie.getNom()+" ne peut supporter cette assaut, et s'effrondre");
+		if(ennemie.subirDegats(degats)) {
+			System.out.println("Le " + ennemie.getNom()+" subit "+ degats +" dégats, et ne peut supporter cette assaut. Il s'effrondre. Mort!");
 			ennemie.mourir();
 		}
 		else {
-			System.out.println("Le " + ennemie.getNom()+", mais parvient à rester debout");
+			System.out.println("Le " + ennemie.getNom()+" subit "+ degats + " dégats, mais parvient à rester debout. Il lui reste "+ennemie.getHP() +" points de vie.");
 		}
 	}
 	
