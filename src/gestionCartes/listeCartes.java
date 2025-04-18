@@ -3,10 +3,23 @@ import Cartes.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Représente une liste prédéfinie de serviteurs disponibles pour créer un deck.
+ * Cette classe permet d'initialiser, d'afficher et de récupérer les cartes de type {@link Serviteur}.
+ * Elle agit comme une bibliothèque de cartes.
+ * 
+ * @author Virgile B
+ */
 public class listeCartes {
+	 /**
+     * Liste de tous les serviteurs disponibles.
+     */
 	List<Serviteur> serviteurs = new ArrayList<>(40);
 
-	
+	/**
+     * Crée les instances de tous les serviteurs disponibles dans le jeu et les ajoute à la liste principale.
+     * Cette méthode est appelée une seule fois à l'initialisation de listeCartes.
+     */
 	public void creeInstanceServiteur() {
 		List<Serviteur> transition = List.of(
 				new Serviteur("Acolyte squelletique", 2, 1, 1),
@@ -53,18 +66,39 @@ public class listeCartes {
 		}
 	}
 
-	
+	/**
+     * Ajoute un serviteur à la liste des cartes disponibles.
+     *
+     * @param nouveauServiteur Le serviteur à ajouter à la liste
+     */
 	public void ajouterCartesListe(Serviteur nouveauServiteur) {
 		this.serviteurs.add(nouveauServiteur);
         }
-
+	
+	/**
+     * Retourne la liste complète des serviteurs.
+     *
+     * @return Liste d'objets {Serviteur}
+     */
 	public List<Serviteur> getListeServiteurs() {
 		return serviteurs;
 	}
+	
+	/**
+     * Retourne un serviteur à une position donnée dans la liste.
+     *
+     * @param x L'index du serviteur (à partir de 0)
+     * @return Le serviteur correspondant
+     * @throws IndexOutOfBoundsException si x est hors limites (de 0 à 38 pour l'instant)
+     */
 	public Serviteur getServiteurs(int x) {
 		return serviteurs.get(x);
 	}
 	
+	/**
+     * Retourne une chaîne représentant toutes les cartes disponibles dans un format lisible.
+     * @return Une description détaillée de chaque carte avec son index, nom, force, HP et coût en mana
+     */
 	public String montrerServiteurs() {
 		String message="";
 		int i = 1;

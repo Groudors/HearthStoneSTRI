@@ -4,17 +4,36 @@ import gestionCartes.*;
 import gestionPlateau.*;
 import java.util.Random;
 
+
+/**
+ * Gère les combats entre deux serviteurs issus d'un deck.
+ * Fournit les méthodes nécessaires pour simuler un affrontement entre deux cartes.
+ * 
+ * @author Virgile B
+ */
 public class CombatServiteurs {
 	
-	
+	/**
+     * Fait s'affronter deux serviteurs jusqu'à ce que l'un d'eux meure.
+     * Si le défenseur survit à l'attaque, il contre-attaque automatiquement.
+     *
+     * @param attaquant Le serviteur qui initie l'attaque
+     * @param defenseur Le serviteur qui subit l'attaque
+     */
 	public void AffrontementDeuxServiteurs(Serviteur attaquant , Serviteur defenseur) {
-		if((attaquant.getHP()>0 && defenseur.getHP()>0)) {
-			attaquant.Attaquer(defenseur);
+		if(!(attaquant.Attaquer(defenseur))) {
 			AffrontementDeuxServiteurs(defenseur,attaquant);
 		}
 
 	}
 	
+	/**
+     * Sélectionne deux serviteurs différents au hasard dans le deck
+     * et les fait s'affronter.
+     *
+     * @param deck Le deck contenant les cartes de type Serviteur
+     * @return true si l'affrontement a pu être réalisé, false sinon
+     */
 	public boolean ChoixServiteurs(Deck deck){
 	 Random rand = new Random();
 	 if(deck.getDeckCartes().size()<2) {
