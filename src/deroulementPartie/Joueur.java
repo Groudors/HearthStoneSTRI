@@ -1,0 +1,47 @@
+package deroulementPartie;
+import heros.*;
+
+import java.util.ArrayList;
+import java.util.*;
+
+import Cartes.*;
+import gestionCartes.*;
+
+class Joueur {
+    private Hero hero;
+    private List<Carte> deck;
+    private List<Carte> hand = new ArrayList<>();
+    private List<Serviteur> board = new ArrayList<>();
+
+    public Joueur(Hero hero, List<Carte> deck) {
+        this.hero = hero;
+        this.deck = new ArrayList<>(deck);
+        Collections.shuffle(this.deck);
+    }
+
+    public Hero getHero() { return hero; }
+    public List<Carte> getHand() { return hand; }
+    public List<Serviteur> getBoard() { return board; }
+    public int getMana() { return hero.getManaActuel(); }
+    public void decreaseMana(int amount) { hero.useMana(amount); }
+
+    public void tirerCarte() {
+        if (!deck.isEmpty()) {
+            hand.add(deck.remove(0));
+        }
+    }
+
+    public void commencerTour() {
+        hero.debutTour();
+        tirerCarte();
+    }
+/*
+    public void playCard(int index, Joueur opponent) {
+        if (index < hand.size()) {
+            Carte card = hand.get(index);
+            card.play(this, opponent);
+            hand.remove(index);
+        }
+    }
+    */
+}

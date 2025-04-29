@@ -103,7 +103,7 @@ public class listeCartes {
 		String message="";
 		int i = 1;
 		for (Serviteur creature : serviteurs) {
-			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDégats() + " HP : "+ creature.getHP() + " Mana : " + creature.getMana() + ". \n";
+			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDégats() + " HP : "+ creature.getHP() + " Mana : " + creature.getCoutMana() + ". \n";
 			i++;
 		}
 		return message;

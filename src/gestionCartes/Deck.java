@@ -54,7 +54,7 @@ public class Deck {
 		message +="| Votre deck est le suivante :\n";
 		int i = 1;
 		for (Serviteur creature : DeckCartes) {
-			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDégats() + " HP : "+ creature.getHP() + " Mana : " + creature.getMana() + ". \n";
+			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDégats() + " HP : "+ creature.getHP() + " Mana : " + creature.getCoutMana() + ". \n";
 			i++;
 		}
 		return message;
@@ -66,7 +66,7 @@ public class Deck {
      * 
      * @param liste La source de cartes disponibles pour composer le deck
      */
-	public void creerDeck(listeCartes liste) {
+	public listeCartes creerDeck(listeCartes liste) {
 		String message="";
 		int i=1;
 		int numType;
@@ -90,6 +90,6 @@ public class Deck {
 			
 			}
 		System.out.println("Votre deck est complet, vous pouvez maintenant commencer le combat ! ");
-		
+		return liste;
 		}
 }

@@ -9,12 +9,10 @@ package Cartes;
  * @author Virgile B
  */
 
-public class Serviteur {
+public class Serviteur extends Carte{
 	private int HP;
 	private int degats;
-	private int mana;
 	// private ActionSpeciale action spéciale; #A faire dans les étapes suivantes
-	private String nom;
 	
 	/**
      * Crée un nouveau serviteur avec les caractéristiques spécifiées.
@@ -25,18 +23,11 @@ public class Serviteur {
      * @param mana Le coût en mana du serviteur
      */
 	public Serviteur(String nom,int HP, int dégats, int mana) {
-		this.nom=nom;
+		super(nom,mana);
 		this.HP=HP;
 		this.degats=dégats;
-		this.mana=mana;
 	}
-	
-	public String getNom() {
-		return nom;
-	}
-	public int getMana() {
-		return mana;
-	}
+
 	public int getHP() {
 		return HP;
 	}
