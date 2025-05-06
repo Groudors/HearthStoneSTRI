@@ -10,8 +10,8 @@ import gestionCartes.*;
 class Joueur {
     private Hero hero;
     private List<Carte> deck;
-    private List<Carte> hand = new ArrayList<>();
-    private List<Serviteur> board = new ArrayList<>();
+    private List<Carte> main = new ArrayList<>();
+    private List<Serviteur> terrain = new ArrayList<>();
 
     public Joueur(Hero hero, List<Carte> deck) {
         this.hero = hero;
@@ -20,15 +20,17 @@ class Joueur {
     }
 
     public Hero getHero() { return hero; }
-    public List<Carte> getHand() { return hand; }
-    public List<Serviteur> getBoard() { return board; }
+    public List<Carte> getHand() { return main; }
+    public List<Serviteur> getBoard() { return terrain; }
     public int getMana() { return hero.getManaActuel(); }
     public void decreaseMana(int amount) { hero.useMana(amount); }
 
-    public void tirerCarte() {
+    public boolean tirerCarte() {
         if (!deck.isEmpty()) {
-            hand.add(deck.remove(0));
+        	main.add(deck.remove(0));
+        	return true;
         }
+		return false;
     }
 
     public void commencerTour() {
