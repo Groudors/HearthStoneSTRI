@@ -53,6 +53,11 @@ public class Deck {
 		return message;
 	}
 	
+	public void melanger() {
+		//A Faire
+		
+	}
+	
 	/**
      * Permet à l'utilisateur de créer un deck de 30 cartes à partir d'une liste de cartes disponibles.
      * L'utilisateur sélectionne les cartes via le clavier. Il peut s'arrêter à tout moment avec l'entrée 0.

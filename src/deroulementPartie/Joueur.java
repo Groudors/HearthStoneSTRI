@@ -14,7 +14,7 @@ public class Joueur {
     private List<Serviteur> terrain = new ArrayList<>();
 
     public Joueur(Deck deck) {
-    	this.hero = new Hero();
+    	this.hero = new Hero(); 
         this.deck = deck;
     }
 
@@ -31,7 +31,7 @@ public class Joueur {
         }
 		return false;
     }
-	
+
     public void commencerTour() {
         hero.debutTour();
         if (!tirerCarte()) {
@@ -39,8 +39,7 @@ public class Joueur {
         	//A faire
         }
     }
-    */
-/*
+
     public void playCard(int index, Joueur opponent) {
         if (index < hand.size()) {
             Carte card = hand.get(index);
