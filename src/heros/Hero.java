@@ -6,18 +6,16 @@ public class Hero {
     private int manaActuel = 1;
     private int manaMax = 1;
 
-    public Hero(String nom) {
-        this.nom = nom;
+    public Hero() {
+        this.nom = ChoixHero.choisirHero();
     }
-    public int getManaActuel() {
-        return manaActuel;
-    }
-    public String getNom() {
-		return nom;
-	}
+    
+    public int getManaActuel() {return manaActuel;}
+    public String getNom() {return nom;}
+    public int getVie() {return vie;}
 
     public void prendreDgt(int dgt) {
-        this.vie -= dgt;
+        vie -= dgt;
     }
 
     public boolean estMort() {
@@ -29,15 +27,13 @@ public class Hero {
         manaActuel = manaMax ;
     }
 
-    public void useMana(int cout) {
+    public void utiliseMana(int cout) {
         manaActuel -= cout;
     }
-
-    public String getName() {
-        return nom;
+    
+    public void choisirHero() {
+    	
+    	
     }
 
-    public int getHealth() {
-        return vie;
-    }
 }

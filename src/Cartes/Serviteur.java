@@ -28,12 +28,8 @@ public class Serviteur extends Carte{
 		this.degats=dégats;
 	}
 
-	public int getHP() {
-		return HP;
-	}
-	public int getDégats() {
-		return degats;
-	}
+	public int getHP() {return HP;}
+	public int getDegats() {return degats;}
 	
 	
 	 /**
@@ -45,7 +41,6 @@ public class Serviteur extends Carte{
 	public Boolean subirDegats(int coupsubi) {
 		HP=HP-coupsubi;
 		return HP<=0;
-		
 	}
 	 /**
      * Méthode appelée lorsque le serviteur meurt.

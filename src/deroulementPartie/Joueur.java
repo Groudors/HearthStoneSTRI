@@ -7,24 +7,23 @@ import java.util.*;
 import Cartes.*;
 import gestionCartes.*;
 
-class Joueur {
+public class Joueur {
     private Hero hero;
-    private List<Carte> deck;
+    private Deck deck;
     private List<Carte> main = new ArrayList<>();
     private List<Serviteur> terrain = new ArrayList<>();
 
-    public Joueur(Hero hero, List<Carte> deck) {
-        this.hero = hero;
-        this.deck = new ArrayList<>(deck);
-        Collections.shuffle(this.deck);
+    public Joueur(Deck deck) {
+    	this.hero = new Hero();
+        this.deck = deck;
     }
 
     public Hero getHero() { return hero; }
     public List<Carte> getHand() { return main; }
     public List<Serviteur> getBoard() { return terrain; }
     public int getMana() { return hero.getManaActuel(); }
-    public void decreaseMana(int amount) { hero.useMana(amount); }
-
+    public void utiliserMana(int amount) { hero.utiliseMana(amount); }
+    /*
     public boolean tirerCarte() {
         if (!deck.isEmpty()) {
         	main.add(deck.remove(0));
@@ -32,11 +31,15 @@ class Joueur {
         }
 		return false;
     }
-
+	
     public void commencerTour() {
         hero.debutTour();
-        tirerCarte();
+        if (!tirerCarte()) {
+        	System.out.println("Vous avez perdu la partie");
+        	//A faire
+        }
     }
+    */
 /*
     public void playCard(int index, Joueur opponent) {
         if (index < hand.size()) {

@@ -1,9 +1,9 @@
 package gestionCartes;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import Utilitaire.*;
-
 import java.util.List;
-
 import Cartes.*;
 
 
@@ -16,16 +16,10 @@ import Cartes.*;
  */
 public class Deck {
 	/*Maximum de 30 cartes par deck */
-	/**
-     * Liste des serviteurs présents dans le deck.
-     */
+
 	private List<Serviteur> DeckCartes = new ArrayList<>(30);
-	 /**
-     * Identifiant unique du deck (non encore utilisé dans ce contexte, sera utile lors de la sauvegarde)
-     */
 	private int Id;
-	
-	
+
 	/**
      * Ajoute un serviteur au deck actuel.
      * 
@@ -46,15 +40,14 @@ public class Deck {
 	
 	/**
      * Retourne une chaîne lisible représentant le contenu actuel du deck.
-     * 
      * @return Une description des cartes contenues dans le deck
      */
 	public String afficherDeck() {
 		String message="";
-		message +="| Votre deck est le suivante :\n";
+		message +="| Votre deck est le suivant :\n";
 		int i = 1;
 		for (Serviteur creature : DeckCartes) {
-			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDégats() + " HP : "+ creature.getHP() + " Mana : " + creature.getCoutMana() + ". \n";
+			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDegats() + " HP : "+ creature.getHP() + " Mana : " + creature.getCoutMana() + ". \n";
 			i++;
 		}
 		return message;
@@ -92,4 +85,5 @@ public class Deck {
 		System.out.println("Votre deck est complet, vous pouvez maintenant commencer le combat ! ");
 		return liste;
 		}
+	
 }
