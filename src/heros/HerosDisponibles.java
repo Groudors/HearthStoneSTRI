@@ -5,11 +5,9 @@ public enum HerosDisponibles {
     GARROSH("Garrosh Hurlenfer", "Guerrier"),
     ANDUIN("Anduin Wrynn", "Prêtre"),
     VALEERA("Valeera Sanguinar", "Voleur"),
-    THRALL("Thrall", "Chaman"),
     MALFURION("Malfurion Hurlorage", "Druide"),
     UTHER("Uther le Porteur de Lumière", "Paladin"),
-    REXXAR("Rexxar", "Chasseur"),
-    GULDAN("Gul'dan", "Démoniste");
+    REXXAR("Rexxar", "Chasseur");
 
     private final String nom;
     private final String classe;
