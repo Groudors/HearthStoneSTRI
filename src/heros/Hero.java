@@ -42,6 +42,10 @@ public class Hero implements Cible {
     public void utiliseMana(int cout) {
         manaActuel -= cout;
     }
+
+	public void setManaActuel(int manaActuel) {
+    this.manaActuel = manaActuel;
+    }
     
 	/**
 	 * Methode permettant d'equiper une arme au hero

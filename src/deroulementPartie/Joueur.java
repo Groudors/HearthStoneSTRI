@@ -1,11 +1,11 @@
 package deroulementPartie;
 import heros.*;
 
-import java.util.ArrayList;
 import java.util.*;
 
 import Cartes.*;
 import gestionCartes.*;
+import gestionEffets.Cible;
 
 public class Joueur {
     private Hero hero;
@@ -173,4 +173,21 @@ public Deck getDeck() {
         }
         return true;
     }
+
+        public boolean jouerSort(int indexMain, Cible cible) {
+        if (indexMain < 0 || indexMain >= main.size()) return false;
+        Carte carte = main.get(indexMain);
+        if (!(carte instanceof Sort)) return false;
+        if (getMana() < carte.getCoutMana()) {
+            System.out.println("Pas assez de mana pour jouer ce sort !");
+            return false;
+        }
+        utiliserMana(carte.getCoutMana());
+        Sort sort = (Sort) carte;
+        sort.activerEffet(cible);
+        main.remove(indexMain);
+        System.out.println("Vous avez joué le sort : " + sort.getNom());
+        return true;
+    }
+    
 }
