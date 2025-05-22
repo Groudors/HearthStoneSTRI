@@ -17,16 +17,16 @@ import Cartes.*;
 public class Deck {
 	/*Maximum de 30 cartes par deck */
 
-	private List<Serviteur> DeckCartes = new ArrayList<>(30);
+	private List<Carte> DeckCartes = new ArrayList<>(30);
 	private int Id;
 
 	/**
      * Ajoute un serviteur au deck actuel.
      * 
-     * @param ServiteurDeck Le serviteur à ajouter
+     * @param carte Le serviteur à ajouter
      */
-	public void ajouterCarteDeck(Serviteur ServiteurDeck) {
-		this.DeckCartes.add(ServiteurDeck);
+	public void ajouterCarteDeck(Carte carte) {
+		this.DeckCartes.add(carte);
         }
 	
 	 /**
@@ -34,7 +34,7 @@ public class Deck {
      * 
      * @return La liste des serviteurs du deck
      */
-	public List<Serviteur> getDeckCartes() {
+	public List<Carte> getDeckCartes() {
 		return DeckCartes;
 	}
 	
@@ -46,8 +46,8 @@ public class Deck {
 		String message="";
 		message +="| Votre deck est le suivant :\n";
 		int i = 1;
-		for (Serviteur creature : DeckCartes) {
-			message += "- " + i + " - " + creature.getNom() + " Force : " + creature.getDegats() + " HP : "+ creature.getHP() + " Mana : " + creature.getCoutMana() + ". \n";
+		for (Carte carte : DeckCartes) {
+			message += "- " + i + " " + carte.presentationCarte()+". \n";
 			i++;
 		}
 		return message;
@@ -70,20 +70,20 @@ public class Deck {
 		int numType;
 		message+=("|----                  Bienvenue dans la Création de Deck                          ---- \n");
 		message+=("|                 Vous pouvez choisir parmis les cartes suivantes                   \n");
-		message+=liste.montrerServiteurs();
+		message+=liste.montrerCartes();
 		System.out.println(message);
 		
 		while (DeckCartes.size()<30) {
 			System.out.println("|              Veuillez choisir la carte " + i +"  0 pour sortir de la création de Deck          \n");
 			numType = Clavier.entrerClavierInt();
-			while((numType > liste.getListeServiteurs().size()) || numType<0) {
+			while((numType > liste.getListeCarte().size()) || numType<0) {
 				System.out.println("|             Numéro de carte invalide           |\n");
 				numType = Clavier.entrerClavierInt();
 			}
 			if (numType == 0){
 				break;
 			}
-			ajouterCarteDeck(liste.getServiteurs(numType-1));
+			ajouterCarteDeck(liste.getCarte(numType-1));
 			System.out.println(afficherDeck());
 			
 			}

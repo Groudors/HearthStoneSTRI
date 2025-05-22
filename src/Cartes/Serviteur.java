@@ -1,4 +1,5 @@
 package Cartes;
+import gestionEffets.*;
 
 /**
  * Représente une carte de type Serviteur dans le jeu.
@@ -9,7 +10,7 @@ package Cartes;
  * @author Virgile B
  */
 
-public class Serviteur extends Carte{
+public class Serviteur extends Carte implements Cible{
 	private int HP;
 	private int degats;
 	// private ActionSpeciale action spéciale; #A faire dans les étapes suivantes
@@ -31,6 +32,15 @@ public class Serviteur extends Carte{
 	public int getHP() {return HP;}
 	public int getDegats() {return degats;}
 	
+	/**
+	 * Retourne une chaîne représentant les caractéristiques du serviteur.
+	 *
+	 * @return Une description détaillée du serviteur
+	 */
+	@Override
+	public String presentationCarte() {
+		return super.presentationCarte() + " [Serviteur] | Force : " + degats + " | HP : " + HP;
+	}
 	
 	 /**
      * Applique des dégâts au serviteur.
@@ -38,9 +48,19 @@ public class Serviteur extends Carte{
      * @param coupsubi Le nombre de points de dégâts subis
      * @return true si le serviteur meurt (HP <= 0), false sinon
      */
-	public Boolean subirDegats(int coupsubi) {
+	public boolean prendreDegats(int coupsubi) {
 		HP=HP-coupsubi;
 		return HP<=0;
+	}
+	
+	public void modifierDegats(int degats) {
+		this.degats = this.degats +degats;
+		return;
+	}
+	
+	public void soigner(int soins) {
+		HP = HP + soins;
+		return;
 	}
 	 /**
      * Méthode appelée lorsque le serviteur meurt.
@@ -58,7 +78,7 @@ public class Serviteur extends Carte{
      * @return true si l'ennemi meurt lors de l'échange, false sinon
      */
 	public boolean Attaquer(Serviteur ennemie) {
-		if(ennemie.subirDegats(degats)) {
+		if(ennemie.prendreDegats(degats)) {
 			System.out.println("Le " + ennemie.getNom()+" subit "+ degats +" dégats, et ne peut supporter cette assaut. Il s'effrondre. Mort!");
 			ennemie.mourir();
 			return true;
