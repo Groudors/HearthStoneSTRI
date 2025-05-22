@@ -25,14 +25,64 @@ public class Joueur {
     
    public boolean tirerCarte() {
     Serviteur carte = deck.piocherCarte(getMana());
-    if (carte != null) {
+        if (carte != null) {
+            utiliserMana(carte.getCoutMana());
+            main.add(carte);
+            return true;
+        }
+        return false;
+    }
+
+    public void distribuerCartesInitialesPremierJoueur() {
+        for (int i = 0; i < 3; i++) {
+            tirerCarte();
+        }
+    }
+
+    public void distribuerCartesInitialesSecondJoueur() {
+        for (int i = 0; i < 4; i++) {
+            tirerCarte();
+        }
+    }
+
+    public void commencerTour() {
+    hero.debutTour();
+    tirerCarte();
+    }
+
+    public void attaquerServiteur(int indexAttaquant, Joueur adversaire, int indexDefenseur) {
+        Serviteur attaquant = terrain.get(indexAttaquant);
+        Serviteur defenseur = adversaire.getBoard().get(indexDefenseur);
+
+        defenseur.subirDegats(attaquant.getDegats());
+        attaquant.subirDegats(defenseur.getDegats());
+
+        if (defenseur.getHP() <= 0) adversaire.getBoard().remove(indexDefenseur);
+        if (attaquant.getHP() <= 0) terrain.remove(indexAttaquant);
+        }
+
+    public void attaquerHero(int indexAttaquant, Joueur adversaire) {
+        if (!adversaire.getBoard().isEmpty()) {
+            System.out.println("Vous ne pouvez pas attaquer le héros tant qu'il y a des serviteurs !");
+            return;
+        }
+        Serviteur attaquant = terrain.get(indexAttaquant);
+        adversaire.getHero().prendreDgt(attaquant.getDegats());
+    }
+
+    public boolean invoquerServiteur(int indexMain) {
+        if (indexMain < 0 || indexMain >= main.size()) return false;
+        Carte carte = main.get(indexMain);
+        if (!(carte instanceof Serviteur)) return false;
+        if (getMana() < carte.getCoutMana()) return false;
         utiliserMana(carte.getCoutMana());
-        main.add(carte);
+        terrain.add((Serviteur) carte);
+        main.remove(indexMain);
         return true;
     }
-    return false;
 }
-}
+
+
     /*
     public boolean tirerCarte() {
         if (!deck.isEmpty()) {
@@ -58,4 +108,3 @@ public class Joueur {
         }
     }
     */
-}
