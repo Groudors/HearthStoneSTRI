@@ -90,29 +90,6 @@ public void attaquerServiteur(int indexAttaquant, Joueur adversaire, int indexDe
         return true;
     }
 
-    /**
-     * Permet au joueur de jouer une carte Arme depuis sa main.
-     * @param indexMain L'index de la carte dans la main
-     * @return true si l'arme a été jouée et équipée, false sinon
-     */
-    public boolean jouerArme(int indexMain) {
-        if (indexMain < 0 || indexMain >= main.size()) return false;
-        Carte carte = main.get(indexMain);
-        if (!(carte instanceof Cartes.Arme)) return false;
-        if (getMana() < carte.getCoutMana()) {
-            System.out.println("Pas assez de mana pour jouer cette arme !");
-            return false;
-        }
-        utiliserMana(carte.getCoutMana());
-        Arme arme = (Arme) carte;
-        // Si une arme est déjà équipée, elle est détruite (voir Hero.equiperArme)
-        hero.equiperArme(arme);
-        main.remove(indexMain);
-        System.out.println("Vous avez équipé l'arme : " + arme.getNom());
-        return true;
-    }
-
-    // Dans Joueur.java
     public boolean getDeckIsEmpty() {
     return deck.getDeckCartes().isEmpty();
 }
@@ -145,58 +122,3 @@ public Deck getDeck() {
         }
     }
     */
-
-    /**
-     * Permet au héros d'attaquer un serviteur adverse avec son arme.
-     * @param adversaire Le joueur adverse
-     * @param indexServiteur L'index du serviteur adverse à attaquer
-     * @return true si l'attaque a eu lieu, false sinon
-     */
-    public boolean attaquerAvecArmeServiteur(Joueur adversaire, int indexServiteur) {
-        Arme arme = hero.getArme();
-        if (arme == null) {
-            System.out.println("Aucune arme équipée !");
-            return false;
-        }
-        if (indexServiteur < 0 || indexServiteur >= adversaire.getBoard().size()) {
-            System.out.println("Aucun serviteur à cette position !");
-            return false;
-        }
-        Serviteur cible = adversaire.getBoard().get(indexServiteur);
-        arme.AttaquerServiteur(cible);
-        System.out.println("Le héros attaque " + cible.getNom() + " avec son arme (" + arme.getNom() + ") !");
-        if (cible.getHP() <= 0) {
-            adversaire.getBoard().remove(indexServiteur);
-            System.out.println(cible.getNom() + " est détruit !");
-        }
-        if (arme.estCassee()) {
-            System.out.println("L'arme est cassée !");
-        }
-        return true;
-    }
-
-    /**
-     * Permet au héros d'attaquer le héros adverse avec son arme.
-     * @param adversaire Le joueur adverse
-     * @return true si l'attaque a eu lieu, false sinon
-     */
-    public boolean attaquerAvecArmeHero(Joueur adversaire) {
-        Arme arme = hero.getArme();
-        if (arme == null) {
-            System.out.println("Aucune arme équipée !");
-            return false;
-        }
-        if (!adversaire.getBoard().isEmpty()) {
-            System.out.println("Impossible d'attaquer le héros adverse tant qu'il reste des serviteurs !");
-            return false;
-        }
-        arme.AttaquerHero(adversaire.getHero());
-        System.out.println("Le héros attaque le héros adverse avec son arme (" + arme.getNom() + ") !");
-        if (adversaire.getHero().estMort()) {
-            System.out.println("Le héros adverse est vaincu !");
-        }
-        if (arme.estCassee()) {
-            System.out.println("L'arme est cassée !");
-        }
-        return true;
-    }
