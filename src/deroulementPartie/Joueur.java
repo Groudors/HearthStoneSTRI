@@ -1,7 +1,6 @@
 package deroulementPartie;
 import heros.*;
 
-import java.util.ArrayList;
 import java.util.*;
 
 import Cartes.*;
@@ -23,6 +22,17 @@ public class Joueur {
     public List<Serviteur> getBoard() { return terrain; }
     public int getMana() { return hero.getManaActuel(); }
     public void utiliserMana(int amount) { hero.utiliseMana(amount); }
+    
+   public boolean tirerCarte() {
+    Serviteur carte = deck.piocherCarte(getMana());
+    if (carte != null) {
+        utiliserMana(carte.getCoutMana());
+        main.add(carte);
+        return true;
+    }
+    return false;
+}
+}
     /*
     public boolean tirerCarte() {
         if (!deck.isEmpty()) {
