@@ -13,7 +13,6 @@ public class EffetProvocation implements Effet {
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Provocation";
 	}
 }

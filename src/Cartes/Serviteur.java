@@ -44,7 +44,7 @@ public class Serviteur extends Carte implements Cible{
 	 */
 	@Override
 	public String presentationCarte() {
-		return super.presentationCarte() + " [Serviteur] | Force : " + degats + " | HP : " + HP;
+		return super.presentationCarte() + " [Serviteur] | Force : " + degats + " | HP : " + HP + " | Effet : " + (effetEntreeJeu != null ? effetEntreeJeu.getDescription() : "Aucun effet");
 	}
 	
 	 /**
