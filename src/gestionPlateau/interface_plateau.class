@@ -1,0 +1,23 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package gestionPlateau;
+
+import deroulementPartie.Joueur;
+
+public class interface_plateau {
+   public interface_plateau() {
+   }
+
+   public static void afficherPlateau(Joueur joueur1, Joueur joueur2) {
+      System.out.println("==============================================");
+      System.out.println("                PLATEAU DE JEU                ");
+      System.out.println("==============================================");
+      afficherJoueur("Joueur 1 (Gauche)", joueur1);
+      System.out.println("----------------------------------------------");
+      afficherJoueur("Joueur 2 (Droite)", joueur2);
+      System.out.println("==============================================\n");
+   }
+
+   private static void afficherJoueur(String var0, Joueur var1) {
+      throw new Error("Unresolved compilation problem: \n\tThe method getDeck() is undefined for the type Joueur\n");
+   }
+}
