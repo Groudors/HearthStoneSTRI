@@ -64,6 +64,8 @@ public class testTourComplet {
             } else if (carteChoisie instanceof Arme) {
                 if (joueur1.jouerArme(choix)) {
                     System.out.println("Vous avez équipé l'arme : " + carteChoisie.getNom());
+                    // Affichage de l'effet de l'arme
+                    System.out.println("Effet de l'arme : " + ((Arme)carteChoisie).presentationCarte());
                 } else {
                     System.out.println("Impossible d'équiper cette arme.");
                 }
@@ -116,6 +118,8 @@ public class testTourComplet {
                 joueur1.utiliserMana(carteChoisie.getCoutMana());
                 joueur1.getHand().remove(choix);
                 System.out.println("Vous avez joué le sort : " + carteChoisie.getNom());
+                // Affichage de l'effet du sort (correction ici)
+                System.out.println("Effet du sort : " + sortChoisi.presentationCarte());
             }
         } else if (choix != -1) {
             System.out.println("Choix invalide.");
