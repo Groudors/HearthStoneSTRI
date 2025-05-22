@@ -90,7 +90,6 @@ public void attaquerServiteur(int indexAttaquant, Joueur adversaire, int indexDe
         return true;
     }
 
-    // Dans Joueur.java
     public boolean getDeckIsEmpty() {
     return deck.getDeckCartes().isEmpty();
 }
