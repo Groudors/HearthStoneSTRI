@@ -17,12 +17,12 @@ public class testArmeEnPartie {
 
         // Ajout manuel d'une arme et d'un serviteur pour le joueur 1
         Arme arme = new Arme("Lame runique horrible", 3, 2, 2);
-        Serviteur serviteur1 = new Serviteur("Acolyte squelletique", 2, 1, 1);
+        Serviteur serviteur1 = new Serviteur("Acolyte squelletique", 2, 1, 1, null);
         deck1.ajouterCarteDeck(arme);
         deck1.ajouterCarteDeck(serviteur1);
 
         // Ajout d'un serviteur pour le joueur 2
-        Serviteur serviteur2 = new Serviteur("Tank zombie titubant", 3, 2, 2);
+        Serviteur serviteur2 = new Serviteur("Tank zombie titubant", 3, 2, 2, null);
         deck2.ajouterCarteDeck(serviteur2);
 
         // Création des joueurs
