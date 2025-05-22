@@ -50,16 +50,24 @@ public class Joueur {
     tirerCarte();
     }
 
-    public void attaquerServiteur(int indexAttaquant, Joueur adversaire, int indexDefenseur) {
-        Serviteur attaquant = terrain.get(indexAttaquant);
-        Serviteur defenseur = adversaire.getBoard().get(indexDefenseur);
+public void attaquerServiteur(int indexAttaquant, Joueur adversaire, int indexDefenseur) {
+    if (indexAttaquant < 0 || indexAttaquant >= terrain.size()) {
+        System.out.println("Aucun serviteur à cette position sur votre terrain !");
+        return;
+    }
+    if (indexDefenseur < 0 || indexDefenseur >= adversaire.getBoard().size()) {
+        System.out.println("Aucun serviteur à cette position sur le terrain adverse !");
+        return;
+    }
+    Serviteur attaquant = terrain.get(indexAttaquant);
+    Serviteur defenseur = adversaire.getBoard().get(indexDefenseur);
 
-        defenseur.subirDegats(attaquant.getDegats());
-        attaquant.subirDegats(defenseur.getDegats());
+    defenseur.subirDegats(attaquant.getDegats());
+    attaquant.subirDegats(defenseur.getDegats());
 
-        if (defenseur.getHP() <= 0) adversaire.getBoard().remove(indexDefenseur);
-        if (attaquant.getHP() <= 0) terrain.remove(indexAttaquant);
-        }
+    if (defenseur.getHP() <= 0) adversaire.getBoard().remove(indexDefenseur);
+    if (attaquant.getHP() <= 0) terrain.remove(indexAttaquant);
+}
 
     public void attaquerHero(int indexAttaquant, Joueur adversaire) {
         if (!adversaire.getBoard().isEmpty()) {
@@ -80,6 +88,14 @@ public class Joueur {
         main.remove(indexMain);
         return true;
     }
+
+    // Dans Joueur.java
+    public boolean getDeckIsEmpty() {
+    return deck.getDeckCartes().isEmpty();
+}
+public Deck getDeck() {
+    return deck;
+}
 }
 
 
