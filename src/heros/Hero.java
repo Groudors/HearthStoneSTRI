@@ -1,22 +1,34 @@
 package heros;
+import Cartes.*;
+import gestionEffets.*;
 
-public class Hero {
+public class Hero implements Cible {
     private String nom;
     private int vie = 30;
     private int manaActuel = 1;
     private int manaMax = 1;
+    private Arme arme;
 
-    public Hero() {
-        this.nom = ChoixHero.choisirHero();
-    }
+    public Hero() {this.nom = ChoixHero.choisirHero();}
     
     public int getManaActuel() {return manaActuel;}
     public String getNom() {return nom;}
     public int getVie() {return vie;}
 
-    public void prendreDgt(int dgt) {
+    public boolean prendreDegats(int dgt) {
         vie -= dgt;
+        return vie<=0;
     }
+
+	public void soigner(int soin) {
+		vie += soin;
+	}
+	public void regenererMana(int mana) {
+		manaActuel += mana;
+		if (manaActuel > manaMax) {
+			manaActuel = manaMax;
+		}
+	}
 
     public boolean estMort() {
         return vie <= 0;
@@ -31,9 +43,25 @@ public class Hero {
         manaActuel -= cout;
     }
     
-    public void choisirHero() {
-    	
-    	
-    }
+	/**
+	 * Methode permettant d'equiper une arme au hero
+	 * 
+	 * @param arme
+	 * @return
+	 */
+	public void equiperArme(Arme arme) {
+		this.arme = arme;
+		arme.equiperArme(this);
+	}
+	
+	public Arme getArme() {
+		return arme;
+	}
+	
+	public void destructionArme() {
+		arme = null;
+	}
+    
+   
 
 }

@@ -16,5 +16,9 @@ public abstract class Carte {
     public int getCoutMana() {
         return coutMana;
     }
+    
+    public String presentationCarte() {
+        return nom + " Mana : " + coutMana + " ";
+    }
 
 }
