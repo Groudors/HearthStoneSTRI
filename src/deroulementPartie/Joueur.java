@@ -23,17 +23,15 @@ public class Joueur {
     public int getMana() { return hero.getManaActuel(); }
     public void utiliserMana(int amount) { hero.utiliseMana(amount); }
     
-    public boolean tirerCarte() {
-    List<Serviteur> cartesDeck = deck.getDeckCartes();
-    if (!cartesDeck.isEmpty()) {
-        // On pioche la première carte du deck
-        Serviteur cartePiochee = cartesDeck.remove(0);
-        main.add(cartePiochee);
-        System.out.println("Vous piochez : " + cartePiochee.getNom());
+   public boolean tirerCarte() {
+    Serviteur carte = deck.piocherCarte(getMana());
+    if (carte != null) {
+        utiliserMana(carte.getCoutMana());
+        main.add(carte);
         return true;
     }
-    System.out.println("Le deck est vide, impossible de piocher !");
     return false;
+}
 }
     /*
     public boolean tirerCarte() {

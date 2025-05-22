@@ -90,5 +90,17 @@ public class Deck {
 		System.out.println("Votre deck est complet, vous pouvez maintenant commencer le combat ! ");
 		return liste;
 		}
-	
+
+		public Serviteur piocherCarte(int manaActuel){
+    	if (!DeckCartes.isEmpty()){
+        Serviteur carte = DeckCartes.get(0);
+        if (manaActuel >= carte.getCoutMana()) {
+            return DeckCartes.remove(0);
+        } else {
+            System.out.println("Pas assez de mana pour piocher cette carte (" + carte.getNom() + ").");
+        }
+    }
+    return null;
+}
+
 }
