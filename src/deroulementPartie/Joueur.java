@@ -15,6 +15,7 @@ public class Joueur {
 
     public Joueur(Deck deck) {
     	this.hero = new Hero(); 
+    	hero.setProprietaire(this);
         this.deck = deck;
     }
 
@@ -189,5 +190,9 @@ public Deck getDeck() {
         System.out.println("Vous avez joué le sort : " + sort.getNom());
         return true;
     }
+        
+        public void ajouterServiteurAuPlateau(Serviteur serviteur) {
+        	terrain.add(serviteur);
+        }
     
 }

@@ -1,6 +1,7 @@
 package heros;
 import Cartes.*;
 import gestionEffets.*;
+import deroulementPartie.*;
 
 public class Hero implements Cible {
     private String nom;
@@ -10,6 +11,7 @@ public class Hero implements Cible {
     private Arme arme;
     private int armure=0;
     private PouvoirHeroique pouvoir;
+    private Joueur proprietaire;
 
     public Hero() {
     	this.nom = ChoixHero.choisirHero();
@@ -24,8 +26,12 @@ public class Hero implements Cible {
 	public Arme getArme() {return arme;}
 	public int getArmure() {return armure;}
 	public int getManaMax() {return manaMax;}
-	
-	
+    public Joueur getProprietaire() {return proprietaire;}
+    
+    public void setProprietaire(Joueur proprietaire) {
+    	this.proprietaire=proprietaire;
+    }
+    
     public boolean prendreDegats(int dgt) {
         vie -= dgt;
         return vie<=0;
@@ -33,6 +39,9 @@ public class Hero implements Cible {
 
 	public void soigner(int soin) {
 		vie += soin;
+		if(vie >30) {
+			vie=30;
+		}
 	}
 	public void regenererMana(int mana) {
 		manaActuel += mana;
