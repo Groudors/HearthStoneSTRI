@@ -2,6 +2,9 @@ package heros;
 
 import gestionEffets.Cible;
 
+/**
+ * Classe représentant le pouvoir héroïque du prêtre. Le prêtre soigne une cible alliée ou lui même de 2 points de vie.
+ */
 public class PouvoirPretre implements PouvoirHeroique {
     @Override
     public void activer(Hero lanceur, Cible cible) {

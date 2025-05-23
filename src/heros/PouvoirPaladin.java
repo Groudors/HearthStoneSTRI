@@ -4,8 +4,7 @@ import gestionEffets.Cible;
 import Cartes.Serviteur;
 
 /**
- * Classe représentant le pouvoir héroïque du paladin.Le paladin invoque une
- * recrue 1/1.
+ * Classe représentant le pouvoir héroïque du paladin.Le paladin invoque une recrue 1/1.
  */
 public class PouvoirPaladin implements PouvoirHeroique {
     @Override

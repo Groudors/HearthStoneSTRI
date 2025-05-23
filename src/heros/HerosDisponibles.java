@@ -1,5 +1,10 @@
 package heros;
 
+/**
+ * Enumération représentant les héros disponibles dans le jeu.
+ * Chaque héros a un nom et une classe associée.
+ * 
+ */
 public enum HerosDisponibles {
     JAINA("Jaina Portvaillant", "Mage"),
     GARROSH("Garrosh Hurlenfer", "Guerrier"),

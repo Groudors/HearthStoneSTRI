@@ -5,11 +5,9 @@ import gestionEffets.*;
  * Représente une carte de type Serviteur dans le jeu.
  * Un serviteur possède des points de vie, des dégâts, un coût en mana, 
  * et un nom. Il peut attaquer un autre serviteur et subir des dégâts.
- * Certains serviteurs peuvent avoir une action spéciale
+ * Certains serviteurs peuvent avoir une action spéciale à leur entrée en jeu
  * 
- * @author Virgile B
  */
-
 public class Serviteur extends Carte implements Cible{
 	private int HP;
 	private int degats;

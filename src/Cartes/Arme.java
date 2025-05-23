@@ -2,7 +2,10 @@ package Cartes;
 import gestionEffets.*;
 import heros.Hero;
 
-
+/**
+ * Classe représentant une arme dans le jeu de cartes.
+ * Elle hérite de la classe Carte et ajoute des fonctionnalités destinées aux armes
+ */
 public class Arme extends Carte{
 	private int durabilite;
 	private int attaque;
@@ -57,7 +60,6 @@ public class Arme extends Carte{
 	
 	/**
 	 * Vérifie si l'arme est cassée.
-	 * 
 	 * @return true si l'arme est cassée, false sinon
 	 */
 	public boolean estCassee() {return durabilite <= 0;}
