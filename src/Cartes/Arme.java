@@ -2,7 +2,10 @@ package Cartes;
 import gestionEffets.*;
 import heros.Hero;
 
-
+/**
+ * Classe représentant une arme dans le jeu de cartes.
+ * Elle hérite de la classe Carte et ajoute des fonctionnalités destinées aux armes
+ */
 public class Arme extends Carte{
 	private int durabilite;
 	private int attaque;
@@ -33,6 +36,11 @@ public class Arme extends Carte{
 	public void AttaquerServiteur(Serviteur cible) {
 		cible.prendreDegats(attaque);
 		durabilite--;
+		if (estCassee()) {
+			detruireArme();
+		} else {
+			System.out.println("L'arme a été utilisée, il lui reste " + durabilite + " points de durabilité.");
+		}
 	}
 	
 	/**
@@ -43,7 +51,7 @@ public class Arme extends Carte{
 	public void AttaquerHero(Hero cible) {
 		cible.prendreDegats(attaque);
 		durabilite--;
-		if (durabilite <= 0) {
+		if (estCassee()) {
 			detruireArme();
 		} else {
 			System.out.println("L'arme a été utilisée, il lui reste " + durabilite + " points de durabilité.");
@@ -52,7 +60,6 @@ public class Arme extends Carte{
 	
 	/**
 	 * Vérifie si l'arme est cassée.
-	 * 
 	 * @return true si l'arme est cassée, false sinon
 	 */
 	public boolean estCassee() {return durabilite <= 0;}
@@ -80,8 +87,8 @@ public class Arme extends Carte{
 				detruireArme();
 				return;
 			}
+			this.proprietaire = hero;
 		}
-		this.proprietaire = hero;
 	}
 	
 	
@@ -97,9 +104,19 @@ public class Arme extends Carte{
 	 * Détruit l'arme lorsqu'elle est cassée.
 	 */
 	public void detruireArme() {
-		System.out.println("L'arme est cassée et ne peut plus être utilisée.");
+		System.out.println("L'arme est détruite et ne peut plus être utilisée.");
 		proprietaire.destructionArme();
 		proprietaire = null;
+	}
+	
+	/**
+	 * Augmente l'attaque de l'arme.
+	 * 
+	 * @param attaque L'augmentation de l'attaque
+	 */
+	public void augmenterAttaque(int attaque) {
+		this.attaque += attaque;
+		System.out.println("L'attaque de l'arme a été augmentée de " + attaque + " points.");
 	}
 	
 	

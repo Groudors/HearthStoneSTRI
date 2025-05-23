@@ -1,11 +1,11 @@
 package deroulementPartie;
 import heros.*;
 
-import java.util.ArrayList;
 import java.util.*;
 
 import Cartes.*;
 import gestionCartes.*;
+import gestionEffets.Cible;
 
 public class Joueur {
     private Hero hero;
@@ -15,6 +15,7 @@ public class Joueur {
 
     public Joueur(Deck deck) {
     	this.hero = new Hero(); 
+    	hero.setProprietaire(this);
         this.deck = deck;
     }
 
@@ -24,13 +25,14 @@ public class Joueur {
     public int getMana() { return hero.getManaActuel(); }
     public void utiliserMana(int amount) { hero.utiliseMana(amount); }
     
-   public boolean tirerCarte() {
-    Carte carte = deck.piocherCarte(getMana());
+    public boolean tirerCarte() {
+        Carte carte = deck.piocherCarte();
         if (carte != null) {
-            utiliserMana(carte.getCoutMana());
             main.add(carte);
+            System.out.println("Carte piochée : " + carte.getNom());
             return true;
         }
+        System.out.println("Le deck est vide !");
         return false;
     }
 
@@ -173,4 +175,25 @@ public Deck getDeck() {
         }
         return true;
     }
+
+        public boolean jouerSort(int indexMain, Cible cible) {
+        if (indexMain < 0 || indexMain >= main.size()) return false;
+        Carte carte = main.get(indexMain);
+        if (!(carte instanceof Sort)) return false;
+        if (getMana() < carte.getCoutMana()) {
+            System.out.println("Pas assez de mana pour jouer ce sort !");
+            return false;
+        }
+        utiliserMana(carte.getCoutMana());
+        Sort sort = (Sort) carte;
+        sort.activerEffet(cible);
+        main.remove(indexMain);
+        System.out.println("Vous avez joué le sort : " + sort.getNom());
+        return true;
+    }
+        
+        public void ajouterServiteurAuPlateau(Serviteur serviteur) {
+        	terrain.add(serviteur);
+        }
+    
 }

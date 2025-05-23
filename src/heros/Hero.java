@@ -1,7 +1,14 @@
 package heros;
 import Cartes.*;
 import gestionEffets.*;
+import deroulementPartie.*;
 
+/** 
+ * Classe permettant de représenter un héro de HearthStone. 
+ * Il possède des attribues, des compétences héroïques unique et peut interragir avec les armes,
+ * joueur, les serviteurs et les sorts.
+ * 
+ */
 public class Hero implements Cible {
     private String nom;
     private int vie = 30;
@@ -10,7 +17,12 @@ public class Hero implements Cible {
     private Arme arme;
     private int armure=0;
     private PouvoirHeroique pouvoir;
-
+    private Joueur proprietaire;
+    /**
+     * Constructeur de la classe Hero
+     * Initialise le nom du héro grâce à la classe ChoixHero, permettant de choisir parmis plusieurs héros
+     * Assigne le pouvoir héroïque en fonction du héro choisit.
+     */
     public Hero() {
     	this.nom = ChoixHero.choisirHero();
     	this.pouvoir= assignerPouvoirHeroique(nom);
@@ -24,8 +36,19 @@ public class Hero implements Cible {
 	public Arme getArme() {return arme;}
 	public int getArmure() {return armure;}
 	public int getManaMax() {return manaMax;}
-	
-	
+    public Joueur getProprietaire() {return proprietaire;}
+    
+    /**
+     * Associe le héro à son joueur
+     * @param proprietaire
+     */
+    public void setProprietaire(Joueur proprietaire) {
+    	this.proprietaire=proprietaire;
+    }
+    
+    
+////// Partie méchaniques de Jeu ///////////////////////////////////////////////////
+
     public boolean prendreDegats(int dgt) {
         vie -= dgt;
         return vie<=0;
@@ -33,6 +56,9 @@ public class Hero implements Cible {
 
 	public void soigner(int soin) {
 		vie += soin;
+		if(vie >30) {
+			vie=30;
+		}
 	}
 	public void regenererMana(int mana) {
 		manaActuel += mana;
@@ -52,6 +78,10 @@ public class Hero implements Cible {
 
     public void utiliseMana(int cout) {
         manaActuel -= cout;
+    }
+
+	public void setManaActuel(int manaActuel) {
+    this.manaActuel = manaActuel;
     }
     
 	public void gagneArmure(int armure) {
@@ -74,6 +104,11 @@ public class Hero implements Cible {
 		arme = null;
 	}
 	
+	/**
+	 * Permet d'obtenir le pouvoir héroïque en fonction du nom du héro choisi
+	 * @param classe
+	 * @return PouvoirHeroique
+	 */
 	private PouvoirHeroique assignerPouvoirHeroique(String classe) {
 	    return switch (classe) {
 	        case "Jaina Portvaillant" -> new PouvoirMage();

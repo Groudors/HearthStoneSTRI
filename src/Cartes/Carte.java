@@ -1,5 +1,9 @@
 package Cartes;
 
+/**
+ * Classe abstraite représentant une carte dans le jeu.
+ * Elle contient des attributs et des méthodes communes à toutes les cartes
+ */
 public abstract class Carte {
     protected String nom;
     protected int coutMana;
