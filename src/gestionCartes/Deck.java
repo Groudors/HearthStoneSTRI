@@ -91,17 +91,13 @@ public class Deck {
 		return liste;
 		}
 
-		public Carte piocherCarte(int manaActuel){
-    	if (!DeckCartes.isEmpty()){
-        Carte carte = DeckCartes.get(0);
-        if (manaActuel >= carte.getCoutMana()) {
-            return DeckCartes.remove(0);
-        } else {
-            System.out.println("Pas assez de mana pour piocher cette carte (" + carte.getNom() + ").");
-        }
+	public Carte piocherCarte(){
+    if (!DeckCartes.isEmpty()){
+        return DeckCartes.remove(0);
     }
     return null;
-}
+	}
+	
 	public boolean isEmpty() {
     return DeckCartes.isEmpty();
 }

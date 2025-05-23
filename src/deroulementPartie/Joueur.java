@@ -25,13 +25,14 @@ public class Joueur {
     public int getMana() { return hero.getManaActuel(); }
     public void utiliserMana(int amount) { hero.utiliseMana(amount); }
     
-   public boolean tirerCarte() {
-    Carte carte = deck.piocherCarte(getMana());
+    public boolean tirerCarte() {
+        Carte carte = deck.piocherCarte();
         if (carte != null) {
-            utiliserMana(carte.getCoutMana());
             main.add(carte);
+            System.out.println("Carte piochée : " + carte.getNom());
             return true;
         }
+        System.out.println("Le deck est vide !");
         return false;
     }
 
