@@ -1,6 +1,7 @@
 package gestionCartes;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.*;
 
 import Utilitaire.*;
 import java.util.List;
@@ -14,7 +15,7 @@ import Cartes.*;
  * 
  * @author Virgile B
  */
-public class Deck {
+public class Deck implements Serializable {
 	/*Maximum de 30 cartes par deck */
 
 	private List<Carte> DeckCartes = new ArrayList<>(30);
@@ -101,5 +102,27 @@ public class Deck {
 	public boolean isEmpty() {
     return DeckCartes.isEmpty();
 }
+
+    // Sauvegarde le deck dans un fichier
+    public void sauvegarderDeck(String nomFichier) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomFichier))) {
+            oos.writeObject(this);
+            System.out.println("Deck sauvegardé dans " + nomFichier);
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la sauvegarde du deck : " + e.getMessage());
+        }
+    }
+
+    // Charge un deck depuis un fichier
+    public static Deck chargerDeck(String nomFichier) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomFichier))) {
+            Deck deck = (Deck) ois.readObject();
+            System.out.println("Deck chargé depuis " + nomFichier);
+            return deck;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erreur lors du chargement du deck : " + e.getMessage());
+            return null;
+        }
+    }
 
 }

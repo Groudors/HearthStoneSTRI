@@ -5,8 +5,9 @@ import utilisationCarte.*;
 import Cartes.*;
 import Utilitaire.Clavier;
 import heros.*;
+import java.io.*;
 
-public class Partie {
+public class Partie implements Serializable {
 
     public static void sortCible(Joueur joueur, Joueur adversaire) {
         // Affichage des sorts dans la main
@@ -47,5 +48,27 @@ public class Partie {
         if (!res) {
             System.out.println("Le sort n'a pas pu être joué.");
         }
-}
+    }
+
+    // Sauvegarde la partie dans un fichier
+    public void sauvegarderPartie(String nomFichier) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomFichier))) {
+            oos.writeObject(this);
+            System.out.println("Partie sauvegardée dans " + nomFichier);
+        } catch (IOException e) {
+            System.out.println("Erreur lors de la sauvegarde de la partie : " + e.getMessage());
+        }
+    }
+
+    // Charge une partie depuis un fichier
+    public static Partie chargerPartie(String nomFichier) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomFichier))) {
+            Partie partie = (Partie) ois.readObject();
+            System.out.println("Partie chargée depuis " + nomFichier);
+            return partie;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Erreur lors du chargement de la partie : " + e.getMessage());
+            return null;
+        }
+    }
 }
