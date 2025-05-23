@@ -210,6 +210,7 @@ public class Deck implements Serializable {
 			System.out.println("\n ====  Menu  Deck  ==== ");
 			System.out.println("1. Créer un nouveau deck");
 			System.out.println("2. Choisir un deck existant");
+			System.out.println("3. Supprimer un deck existant");
 			System.out.println("0. Retour");
 
 			String choix = scanner.nextLine();
@@ -219,8 +220,10 @@ public class Deck implements Serializable {
 					creerDeck(liste);
 					break;
 				case "2":
-					choisirDeck(liste);
+					choisirDeck(liste,true);
 					break;
+				case "3":
+					choisirDeck(liste,false);
 				case "0":
 					return; // Retour arrière
 				default:
@@ -228,13 +231,38 @@ public class Deck implements Serializable {
 			}
 		}
 	}
+	
+	/**
+	 * Supprime un deck existant en supprimant le fichier texte correspondant.
+	 * @param nomDeck Le nom du deck à supprimer
+	 * @return true si le deck a été supprimé avec succès, false sinon
+	 */
+	public static boolean supprimerDeck(String nomDeck) {
+	    String chemin = SAUVEGARDE_DECK + nomDeck + ".txt";
+	    File fichier = new File(chemin);
+
+	    if (fichier.exists()) {
+	        if (fichier.delete()) {
+	            System.out.println("Le deck \"" + nomDeck + "\" a été supprimé avec succès.");
+	            return true;
+	        } else {
+	            System.out.println("Erreur : impossible de supprimer le deck \"" + nomDeck + "\".");
+	        }
+	    } else {
+	        System.out.println("Erreur : le deck \"" + nomDeck + "\" n'existe pas.");
+	    }
+
+	    return false;
+	}
+	
+	
 	/**
 	 * Permet de choisir un deck existant parmi ceux disponibles.
 	 * L'utilisateur peut annuler le choix en entrant 0.
 	 * @param liste
 	 * @return
 	 */
-	public void choisirDeck(listeCartes liste) {
+	public void choisirDeck(listeCartes liste, Boolean choixSupprimer) {
 		ArrayList<String> decks = listerDecksDisponibles();
 		// On vérifie si la liste de deck est vide 
 		if (decks.isEmpty()) {
@@ -254,13 +282,20 @@ public class Deck implements Serializable {
 			choix = Clavier.entrerClavierInt();
 		}
 		if (choix == 0) return;
-
-		String nomDeck = decks.get(choix - 1);
-		chargerDeck(nomDeck, liste);
+		if (choixSupprimer) {
+				String nomDeck = decks.get(choix - 1);
+				chargerDeck(nomDeck, liste);
 		
-        // On affiche le deck chargé
-        System.out.println("Vous avez choisi le deck : " + nomDeck);
-        System.out.println(afficherDeck());
+			// On affiche le deck chargé
+        	System.out.println("Vous avez choisi le deck : " + nomDeck);
+        	System.out.println(afficherDeck());
+		}   
+		else {
+			//On supprime le deck
+			String nomDeck = decks.get(choix - 1);
+			supprimerDeck(nomDeck);
+		}
+			
 	}
 
 	

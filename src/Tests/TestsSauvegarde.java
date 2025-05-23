@@ -21,7 +21,7 @@ public class TestsSauvegarde {
         // Lancement du menu de gestion des decks
         monDeck.gererDeck(liste);
 
-        // Optionnel : tester pioche
+        // On teste pioche
         Carte piochee = monDeck.piocherCarte();
         if (piochee != null) {
             System.out.println("Vous avez pioché : " + piochee.presentationCarte());
