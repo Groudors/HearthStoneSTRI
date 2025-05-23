@@ -11,8 +11,8 @@ public abstract class Carte {
     public Carte(String nom, int coutMana) {
         this.nom = nom;
         this.coutMana = coutMana;
-    }
-
+     }
+    
     public String getNom() {
         return nom;
     }
